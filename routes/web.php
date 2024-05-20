@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/contact-form', function () {
+return view('contact_form');
+});
+
+Route::post('/contact-form', [App\Http\Controllers\ContactFormController::class, 'store']);
