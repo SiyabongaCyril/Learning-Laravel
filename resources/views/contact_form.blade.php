@@ -25,10 +25,17 @@
         <div>
           <label class="field-label" for="first_name">First name</label>
           <input class="text-field" type="text" id="first_name" name="first_name" maxlength="50" placeholder="Enter your first name">
+          @if ($errors->has('first_name'))
+          <span class="error">{{ 'Your first name is required.' }}</span>
+          @endif
         </div>
         <div class="last-name-field">
           <label class="field-label" for="last_name">Last name</label>
-          <input class="text-field" type="text" id="last_name" name="last_name" maxlength="50" placeholder="Enter you last name"><br><br>
+          <input class="text-field" type="text" id="last_name" name="last_name" maxlength="50" placeholder="Enter you last name">
+          @if ($errors->has('last_name'))
+          <span class="error">{{ 'Your last name is required.' }}</span>
+          @endif
+          <br><br>
         </div>
 
 
@@ -36,16 +43,28 @@
 
       <label class="field-label" for="email">Email</label><br>
       <input class="text-field" type="email" id="email" name="email" maxlength="50" placeholder="Enter your email"><br>
-      <span>example@example.com</span><br><br>
+      @if ($errors->has('email'))
+      <span class="error">{{ 'Enter a valid email address.' }}</span>
+      @else
+      <span>example@example.com</span>
+      @endif
+      <br><br>
       <label class="field-label" for="subject">Subject</label><br>
-      <input class="text-field" type="text" id="subject" name="subject" size=53 maxlength="100" placeholder="Enter the subject of your message"> <br><br>
+      <input class="text-field" type="text" id="subject" name="subject" size=53 maxlength="100" placeholder="Enter the subject of your message" value="{{ old('message') }}"><br>
+      @if ($errors->has('subject'))
+      <span class="error">{{ 'The subject is required (atleast 3 characters)' }}</span>
+      @endif
+      <br><br>
       <label class="field-label" for="message">Message</label><br>
-      <textarea class="text-field" id="message" name="message" rows="10" cols="53" maxlength="16535" placeholder="Enter your message here. Be as detailed as possible."></textarea><br><br>
+      <textarea class="text-field" id="message" name="message" rows="10" cols="53" maxlength="16535" placeholder="Enter your message here. Be as detailed as possible."></textarea><br>
       @if (session('success'))
       <div class="alert-success">
         {{ session('success') }}
       </div>
+      @elseif ($errors->has('message'))
+      <span class="error">{{ 'The message is required (atleast 20 characters)' }}</span>
       @endif
+      <br><br>
       <input id="submit" type="submit" value="Submit" style="color: blue">
 
     </form>

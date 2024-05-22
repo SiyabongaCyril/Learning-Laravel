@@ -33,12 +33,15 @@ h1 {
 }
 
 span {
-  margin-top: -20px;
-  /* Adjust this value as needed */
+  margin-top: 0px;
   padding-left: 10px;
   font-size: smaller;
   color: gray;
   font-style: oblique;
+}
+
+span.error {
+  color: red;
 }
 
 #submit {

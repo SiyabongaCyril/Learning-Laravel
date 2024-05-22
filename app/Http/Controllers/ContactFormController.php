@@ -20,9 +20,18 @@ class ContactFormController extends Controller
             'message' => 'required|min:20|max:65535',
         ]);
 
+        /* $messages = [
+            'first_name' => 'Your first name is required.',
+            'last_name' => 'Your last name is required.',
+            'email' => 'Enter a valid email address.',
+            'subject' => 'The subject is required (atleast 3 characters)',
+            'message' => 'The message is required (atleast 20 characters)',
+        ]; */
+
 
         ContactForm::create($data);
 
+       
         return redirect('/contact-form')->with('success', 'Thanks for contacting us! We will get back to you soon.');
     }
 }
