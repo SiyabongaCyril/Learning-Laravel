@@ -17,7 +17,7 @@ class ContactFormController extends Controller
             'last_name' => 'required|min:1|max:50',
             'email' => 'required|email|min:5|max:100',
             'subject' => 'required|min:3|max:100',
-            'message' => 'required|min:10|max:65535',
+            'message' => 'required|min:20|max:65535',
         ]);
 
 
