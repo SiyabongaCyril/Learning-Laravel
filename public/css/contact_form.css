@@ -4,11 +4,12 @@ h1 {
 }
 
 .contact-form {
-  padding-left: 10px;
+  padding-left: 50px;
 }
 
 .alert-success {
   color: green;
+  font-weight: bold;
 }
 
 .field-label {

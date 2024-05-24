@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('contact_forms', function (Blueprint $table) {
             $table->id();
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('subject',100)->nullable(false);
             $table->text('message')->nullable(false);
             // For registered users - Link the contact request to the user's account
-            $table->foreignId('user_id')->constrained('users');
+            // $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
 
         });

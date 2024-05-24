@@ -20,18 +20,24 @@ class ContactFormController extends Controller
             'message' => 'required|min:20|max:65535',
         ]);
 
-        /* $messages = [
-            'first_name' => 'Your first name is required.',
-            'last_name' => 'Your last name is required.',
-            'email' => 'Enter a valid email address.',
-            'subject' => 'The subject is required (atleast 3 characters)',
-            'message' => 'The message is required (atleast 20 characters)',
-        ]; */
+        // Disallow resubmission if form was already submitted
+        $exists = ContactForm::where(
+            [ 'first_name' => $request['first_name'],
+              'last_name' =>  $request['last_name'],
+               'email' =>  $request['email'],
+               'subject' =>  $request['subject'],
+               'message' =>  $request['message']
+            ]
+          )->exists();
 
+          //TODO: Deal with other types of spam form submissions          
+          
+          if ($exists){
+            return redirect('/contact-form')->withInput()->with('success', 'Dear '.$request['first_name'].', Thank you for writing to us. We got your request and within 2 business days, we will get in touch.');
+          } else{
+            ContactForm::create($data);
+            return redirect('/contact-form')->withInput()->with('success', 'Dear '.$request['first_name'].', Thanks for contacting us! We will get back to you soon.');
+          }
 
-        ContactForm::create($data);
-
-       
-        return redirect('/contact-form')->with('success', 'Thanks for contacting us! We will get back to you soon.');
     }
 }
